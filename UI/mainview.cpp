@@ -14,7 +14,6 @@ MainView::MainView(QWidget *parent)
     LoadResources(); // 2) Load the required files
     SetupHighlighter(); // 3) No (2) is required for this step
     SetupPython();
-
     m_tute = new XTute(this);
 }
 
@@ -583,7 +582,6 @@ void MainView::on_btnTuteLoad_clicked() {
     if (!Confirm(tr("Are you sure you want to load a question, this will reset current progress (if any) ?"))) {
         return;
     }
-
     int index = ui->lwTute->currentRow();
     if (index < 0 || index >= ui->lwTute->count()) {
         return;
@@ -607,6 +605,5 @@ void MainView::on_btnTuteMark_clicked() {
 }
 
 void MainView::on_btnStopPython_clicked() {
-    m_worker->killed.store(1);
-    //emit this->terminate();
+    m_worker->SetInterrupt();
 }

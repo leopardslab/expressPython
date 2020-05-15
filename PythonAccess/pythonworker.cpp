@@ -2,7 +2,7 @@
 #include "pythonworker.h"
 
 PythonWorker::PythonWorker(QObject *parent) : QObject(parent) {
-    this->killed.store(-2);
+    this->killed.store(EP_PROCESS_INTERRUPT_UNSET);
 }
 
 void PythonWorker::RunPython(const QString &startme, const QString &code) {
@@ -21,25 +21,33 @@ void PythonWorker::RunPython(const QString &startme, const QString &code) {
         return this->killed.load();
     };
 
+    // Set the output writer lambda
     emb::SetStdout(write);
+    // Set is interrupted checker
     emb::SetIsInterruptedCallback(isInterrupted);
-    this->killed.store(0);
-    m_gil = PyGILState_Ensure();
+
+    this->killed.store(EP_PROCESS_INTERRUPT_RUNNING);
+    PyGILState_STATE gil = PyGILState_Ensure();
     PyRun_SimpleString(startme.toStdString().c_str());
-    PyGILState_Release(m_gil);
+    PyGILState_Release(gil);
     emb::ResetStdOut();
     Py_Finalize();
     emit EndPythonRun();
 }
 
+
 // https://stackoverflow.com/questions/1420957/stopping-embedded-python
 int quit(void *) {
-    PyErr_SetString(PyExc_KeyboardInterrupt, "...");
+    PyErr_SetInterrupt();
     return -1;
 }
 
+void PythonWorker::SetInterrupt() {
+    this->killed.store(EP_PROCESS_INTERRUPT_KILL);
+}
+
 void PythonWorker::StopPython() {
-    QThread::msleep(2000);
+    QThread::msleep(10);
     PyGILState_STATE gil;
     gil = PyGILState_Ensure();
     Py_AddPendingCall(&quit, NULL);
