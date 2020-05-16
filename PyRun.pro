@@ -43,23 +43,24 @@ RESOURCES += \
     PyRunResources.qrc
 
 # Windows specific config
-win32: PYTHON37_LOCATION = $$(PYTHON37_LOCATION)
-win32: message($$PYTHON37_LOCATION)
+win32: PYTHON3_LOCATION = $$(PYTHON3_LOCATION)
+win32: message($$PYTHON3_LOCATION)
 win32: RC_FILE = WindowsResources/win_rsrc.rc
-win32: LIBS += -L$${PYTHON37_LOCATION}\libs\ -lpython37
-win32: INCLUDEPATH += $${PYTHON37_LOCATION}\include
-win32: DEPENDPATH += $${PYTHON37_LOCATION}\include
+win32: LIBS += -L$${PYTHON3_LOCATION}\libs\ -lpython38
+win32: INCLUDEPATH += $${PYTHON3_LOCATION}\include
+win32: DEPENDPATH += $${PYTHON3_LOCATION}\include
 
 # MacOS specific config
-macx: PYTHON37_LIB_LOCATION = $$(PYTHON37_LIB_LOCATION)
-# If installed with brew it looks like: /usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7/lib
-macx: PYTHON37_INC_LOCATION = $$(PYTHON37_INC_LOCATION)
-# If installed with brew it looks like: /usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7/include/python3.7m
-macx: LIBS += -L$${PYTHON37_LIB_LOCATION} -lpython3.7
-macx: INCLUDEPATH += $${PYTHON37_INC_LOCATION}
-macx: DEPENDPATH += $${PYTHON37_INC_LOCATION}
+macx: PYTHON3_LIB_LOCATION = $$(PYTHON3_LIB_LOCATION)
+# If installed with brew it looks like: /usr/local/Cellar/python/3.8.0/Frameworks/Python.framework/Versions/3.8/lib
+macx: PYTHON3_INC_LOCATION = $$(PYTHON3_INC_LOCATION)
+# If installed with brew it looks like: /usr/local/Cellar/python/3.8.0/Frameworks/Python.framework/Versions/3.8/include/python3.8m
+macx: LIBS += -L$${PYTHON3_LIB_LOCATION} -lpython3.8
+macx: INCLUDEPATH += $${PYTHON3_INC_LOCATION}
+macx: DEPENDPATH += $${PYTHON3_INC_LOCATION}
 macx: ICON = Icons/PyRunImg.icns
 
+# Linux specific configurations
 unix: PYTHON3_LIB_LOCATION = $$(PYTHON3_LIB_LOCATION)
 unix: PYTHON3_INC_LOCATION = $$(PYTHON3_INC_LOCATION)
 unix: LIBS += PYTHON3_LIB_LOCATION
