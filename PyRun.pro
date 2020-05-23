@@ -23,7 +23,7 @@ SOURCES += main.cpp\
     CodeEditor/codelineedit.cpp \
     Features/xquestion.cpp \
     Features/xtute.cpp \
-    PythonAccess/jedi.cpp
+    PythonAccess/jedi.cpp 
 
 HEADERS  += UI/mainview.h \
     CodeEditor/pythonsyntaxhighlighter.h \
@@ -34,7 +34,7 @@ HEADERS  += UI/mainview.h \
     CodeEditor/codelineedit.h \
     Features/xquestion.h \
     Features/xtute.h \
-    PythonAccess/jedi.h
+    PythonAccess/jedi.h 
 
 FORMS    += UI/mainview.ui
 
@@ -55,7 +55,7 @@ macx: PYTHON3_LIB_LOCATION = $$(PYTHON3_LIB_LOCATION)
 # If installed with brew it looks like: /usr/local/Cellar/python/3.8.0/Frameworks/Python.framework/Versions/3.8/lib
 macx: PYTHON3_INC_LOCATION = $$(PYTHON3_INC_LOCATION)
 # If installed with brew it looks like: /usr/local/Cellar/python/3.8.0/Frameworks/Python.framework/Versions/3.8/include/python3.8m
-macx: LIBS += -L$${PYTHON3_LIB_LOCATION} -lpython3.8
+macx: LIBS += -L$${PYTHON3_LIB_LOCATION} -lpython3.8 -lqtermwidget5
 macx: INCLUDEPATH += $${PYTHON3_INC_LOCATION}
 macx: DEPENDPATH += $${PYTHON3_INC_LOCATION}
 macx: ICON = Icons/PyRunImg.icns
@@ -63,7 +63,7 @@ macx: ICON = Icons/PyRunImg.icns
 # Linux specific configurations
 unix: PYTHON3_LIB_LOCATION = $$(PYTHON3_LIB_LOCATION)
 unix: PYTHON3_INC_LOCATION = $$(PYTHON3_INC_LOCATION)
-unix: LIBS += PYTHON3_LIB_LOCATION
+unix: LIBS += PYTHON3_LIB_LOCATION -lqtermwidget5
 unix: INCLUDEPATH += PYTHON3_INC_LOCATION
 unix: DEPENDPATH += PYTHON3_INC_LOCATION
 
