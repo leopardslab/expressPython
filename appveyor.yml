@@ -8,7 +8,17 @@ build_script:
 - cmd: >-
     echo %PATH%
 
-    C:\Qt\5.9\mingw53_32\bin\qmake.exe PyRun.pro
+    if exist "C:\projects\expresspython\ANTLR4runtime\build" rd /s /q C:\projects\expresspython\ANTLR4runtime\build
+
+    if exist "C:\projects\expresspython\ANTLR4runtime\run" rd /s /q C:\projects\expresspython\ANTLR4runtime\run
+
+    mkdir C:\projects\expresspython\ANTLR4runtime\build && mkdir C:\projects\expresspython\ANTLR4runtime\run && cd C:\projects\expresspython\ANTLR4runtime\build
+
+    cmake.exe ..  -G "MinGW Makefiles" -DCMAKE_SH="CMAKE_SH-NOTFOUND"
+
+    DESTDIR=../run mingw32-make.exe
+
+    C:\Qt\5.9\mingw53_32\bin\cmake.exe .. -G "MinGW Makefiles"
 
     C:\MinGW\bin\mingw32-make.exe
 
