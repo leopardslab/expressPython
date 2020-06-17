@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: 
+      - '*'
+  pull_request:
+    branches: 
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+        python-version: [3.5, 3.6, 3.7.4, 3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v2
+      with:
+        install-deps: 'true'
+      
+    - name: Build expressPython
+      run: |
+            sudo ./build.sh
+            mkdir build && cd build
+            cmake ..
+            make
