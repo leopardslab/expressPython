@@ -93,6 +93,9 @@ class MainView : public QMainWindow {
     void on_btnTuteLoad_clicked();
     void on_btnTuteMark_clicked();
     void on_btnTerminal_clicked();
+    void on_btnSnippet_clicked();
+    void on_btnNotes_clicked();
+    void on_btnTutorial_clicked();
     void on_btnStopPython_clicked();
 
   private:

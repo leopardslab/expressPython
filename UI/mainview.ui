@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1417</width>
+    <width>2218</width>
     <height>615</height>
    </rect>
   </property>
@@ -324,7 +324,7 @@
          <bool>false</bool>
         </property>
         <property name="currentText">
-         <string>Consolas</string>
+         <string>Courier 10 Pitch</string>
         </property>
         <property name="fontFilters">
          <set>QFontComboBox::MonospacedFonts</set>
@@ -473,6 +473,48 @@
         </property>
         <property name="autoRepeat">
          <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnNotes">
+        <property name="toolTip">
+         <string>Notes</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../Icons/Notes.png</normaloff>../Icons/Notes.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnSnippet">
+        <property name="toolTip">
+         <string>Snippets</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../Icons/Snippet.png</normaloff>../Icons/Snippet.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnTutorial">
+        <property name="toolTip">
+         <string>Tutorial</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../Icons/Tutorial.jpg</normaloff>../Icons/Tutorial.jpg</iconset>
         </property>
        </widget>
       </item>

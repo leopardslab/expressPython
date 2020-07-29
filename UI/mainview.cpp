@@ -439,7 +439,9 @@ void MainView::on_btnRunSnippet_clicked() {
                 "Are you sure you want to run this snippet (from snippet area) ?")) {
         return;
     }
-
+    if (ui->chkClearOut->isChecked()) {
+        ui->txtOutput->clear();
+    }
     RunPythonCode(ui->txtSnippet->toPlainText());
 }
 
@@ -653,4 +655,28 @@ void MainView::on_btnTerminal_clicked() {
 #else
     QMessageBox::information(this, tr(APP_NAME), tr("Currently, terminal is not available for Windows"));
 #endif
+}
+
+void MainView::on_btnSnippet_clicked() {
+    if(ui->dwSnippet->isHidden()) {
+        ui->dwSnippet->show();
+    } else {
+        ui->dwSnippet->hide();
+    }
+}
+
+void MainView::on_btnTutorial_clicked() {
+    if(ui->dwTutorial->isHidden()) {
+        ui->dwTutorial->show();
+    } else {
+        ui->dwTutorial->hide();
+    }
+}
+
+void MainView::on_btnNotes_clicked() {
+    if(ui->dwNote->isHidden()) {
+        ui->dwNote->show();
+    } else {
+        ui->dwNote->hide();
+    }
 }
