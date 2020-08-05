@@ -123,6 +123,7 @@ class MainView : public QMainWindow {
     void SetupHighlighter();
     void SetupTerminal();
     void SetTerminal();
+    void SetupShortuctKeys();
     void SaveFile(CodeEditor *codeEditor, const bool isPython = false);
     void BrowseAndLoadFile(CodeEditor *codeEditor, const bool isPython = false);
     QString LoadFile(const QString &fileName, bool &success,

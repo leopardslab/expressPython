@@ -53,9 +53,6 @@ This is fairly simple to use.
 * There is terminal intergrated, one can access it by clicking on the top right button(currently it is available for Ubuntu and MacOs distros).
 * This is not a full IDE and is not planning to be.
 
-## Known Limitations
-* Lacks keyboard shortcuts(*Coming soon*).
-
 ## Credits
 Standing on the shoulders of the giants.
 

@@ -4,8 +4,8 @@
 #include "UI/mainview.h"
 #include "ui_mainview.h"
 #include <QSettings>
+#include <QShortcut>
 #include <QStringListModel>
-#include <QDebug>
 #include "CodeEditor/antlrsyntaxhighlighter.h"
 MainView::MainView(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainView) {
@@ -15,7 +15,7 @@ MainView::MainView(QWidget *parent)
     SetupHighlighter(); // 3) No (2) is required for this step
     SetupTerminal();
     SetupPython();
-
+    SetupShortuctKeys();
     m_tute = new XTute(this);
 }
 
@@ -117,6 +117,21 @@ void MainView::LoadSettings() {
 
     ChangeFontSize(ui->fntCombo->currentFont(),
                    ui->cmbFontSize->currentText().toInt());
+}
+
+void MainView::SetupShortuctKeys() {
+    // Save file
+    QShortcut *save = new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_S), this);
+    QObject::connect(save, &QShortcut::activated, this, &MainView::on_btnCodeSave_clicked);
+    // Load file
+    QShortcut *open = new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_O), this);
+    QObject::connect(open, &QShortcut::activated, this, &MainView::on_btnCodeOpen_clicked);
+    // Load terminal
+    QShortcut *terminal = new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_T), this);
+    QObject::connect(terminal, &QShortcut::activated, this, &MainView::on_btnTerminal_clicked);
+    // Run code
+    QShortcut *run = new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_R), this);
+    QObject::connect(run, &QShortcut::activated, this, &MainView::on_btnRun_clicked);
 }
 
 void MainView::SetSnippets(Snippets *snip) {
